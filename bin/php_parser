@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "../lib")))
+require "cc/engine/duplication"
+require "pp"
+
+filename = ARGV.fetch(0)
+code = File.read(filename)
+parser = CC::Engine::Analyzers::Php::Parser.new(code, filename)
+parser.parse
+pp parser.syntax_tree
